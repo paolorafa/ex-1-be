@@ -1,0 +1,37 @@
+GET HTTP://localhost:3500/author HTTP/1.1s
+
+####
+
+POST HTTP://localhost:3500/author/create HTTP/1.1s
+Content-Type: application/json
+
+{
+    "name": "pippo",
+    "lastname": "pollo",
+    "email": "pollo@l.it",
+    "date": "23-08-1988",
+    "avatar": "yes"
+}
+
+####
+GET HTTP://localhost:3500/author/6519af34626d520a1c12c689
+
+####
+
+PATCH  HTTP://localhost:3500/author/update/651ad90166f34f518fdeb8b9
+
+{
+    "name": "franco",
+    "email": "franco@l.it",
+    "date": "23-08-1995",
+    "avatar": "yes"
+}
+####
+DELETE   HTTP://localhost:3500/author/delete/651ad90166f34f518fdeb8b9
+
+{
+    "name": "franco",
+    "email": "franco@l.it",
+    "date": "23-08-1995",
+    "avatar": "yes"
+}
