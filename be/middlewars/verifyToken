@@ -1,0 +1,26 @@
+const jwt = require ('jsonwebtoken')
+
+module.exports = function (req, res, next) {
+    const token = req.header('Authorization')
+
+    if (!token){
+        return res.status(401).send({
+            errorType: 'Token not present',
+            statuscode: 401,
+            message:'è necessario un token di accesso'
+        })
+    }
+
+    try{
+        const verified = jwt.verify(token, process.env.JWT_SECRET_KEY)
+        res.user= verified
+        next()
+    } catch (e){
+        res.status(403).send({
+            errorType: 'Token not valid',
+            statuscode: 403,
+            message:'token scaduto o non valido'
+        })
+    }
+
+}

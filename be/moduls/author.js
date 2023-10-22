@@ -13,13 +13,19 @@ const AuthorSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    date:{
-        type: String
-    },
-    avatar:{
+    role:{
         type: String,
-        default:"https://media.gqitalia.it/photos/5ec3ca47a63ee8cb452d9ce4/master/w_1600%2Cc_limit/Avatar.jpg"
+        enum: ['user', 'admin', 'editor'],
+        default: 'user'
+    },
+
+    password:{
+        type: String,
+        required: true,
+        min:6
+       
     }
+    
 
 }, {timestamps: true, strict:true})
 
