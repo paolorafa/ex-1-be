@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "engines": {
-      "node": ">=14.20.*"
+      "node": ">=14.17.0"
     },
     "dev": "nodemon server.js"
   },
