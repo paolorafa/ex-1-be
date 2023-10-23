@@ -48,13 +48,19 @@ gh.get('/auth/github',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
    const user = req.user;
-   console.log("user:",user);
-   const token = jwt.sign(user, process.env.JWT_SECRET_KEY)
-   const redirectUrl = `http://localhost:3000/success/token=${encodeURIComponent(token)}`;
+   const token = jwt.sign(user, process.env.JWT_SECRET_KEY);
+   const redirectUrl = `http://localhost:3000/success?token=${encodeURIComponent(token)}`;
    res.redirect(redirectUrl);
   });
 
+
 gh.get('/success', (req, res) => {
+    const tokenFromGitHub = req.query.token; // Supponiamo che il token venga passato come parametro "token"
+
+    // Memorizza il token nel localStorage
+    if (tokenFromGitHub) {
+      localStorage.setItem('loggedIn', JSON.stringify(tokenFromGitHub));
+    }
     res.redirect('http://localhost:3000/home');
 })
 
